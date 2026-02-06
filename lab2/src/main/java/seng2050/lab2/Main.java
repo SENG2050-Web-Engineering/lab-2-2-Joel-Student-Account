@@ -6,6 +6,8 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
+import jakarta.servlet.http.HttpServlet;
+
 public class Main {
   public static void main(String[] args) {
     // Create Tomcat instance
@@ -32,11 +34,25 @@ public class Main {
       throw new RuntimeException("Tomcat context initialization failed!");
     }
 
-    // Add a servlet
-    tomcat.addServlet("", "HelloWorldServlet", new HelloWorldServlet());
+
+
+    // a simple and temporary assignment of the chosen servlet. this only exists to allow easy servlet testing. 
+
+    String chosenServlet = 
+    "HelloWorld";
+    //"SimpleMessage";
     
+    HttpServlet servlet = 
+    new HelloWorldServlet();
+    //new SimpleMessage();
+
+    // Add a servlet
+    tomcat.addServlet("", chosenServlet+"Servlet", servlet);
+  
     // Map the servlet
-    ctx.addServletMappingDecoded("/HelloWorld", "HelloWorldServlet");
+    ctx.addServletMappingDecoded("/"+chosenServlet, chosenServlet+"Servlet");
+
+
 
     // Start Tomcat
     try {
