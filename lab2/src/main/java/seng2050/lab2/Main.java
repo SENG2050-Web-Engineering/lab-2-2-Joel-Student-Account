@@ -39,11 +39,13 @@ public class Main {
     // a simple and temporary assignment of the chosen servlet. this only exists to allow easy servlet testing. 
 
     String chosenServlet = 
-    "HelloWorld";
+    "GenerateValidHTML";
+    //"HelloWorld";
     //"SimpleMessage";
-    
+
     HttpServlet servlet = 
-    new HelloWorldServlet();
+    new GenerateValidHTML();
+    //new HelloWorldServlet();
     //new SimpleMessage();
 
     // Add a servlet
